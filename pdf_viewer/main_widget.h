@@ -655,7 +655,7 @@ public:
     void handle_show_marks();
     void handle_goto_bookmark_global();
     std::wstring handle_add_highlight(char symbol);
-				void select_previous_selection();
+    void select_previous_selection();
     void handle_goto_highlight();
     void handle_goto_highlight_global();
     void handle_goto_toc();
@@ -712,8 +712,6 @@ public:
     // Text selection indicators in touch mode
     SelectionIndicator* selection_begin_indicator = nullptr;
     SelectionIndicator* selection_end_indicator = nullptr;
-    SelectionIndicator* prev_selection_begin_indicator = nullptr;
-    SelectionIndicator* prev_selection_end_indicator = nullptr;
 
     // When in touch mode, sometimes we use the last touch hold point for some commands
     // for example, if select text button is pressed, we select the text under the last touch hold point

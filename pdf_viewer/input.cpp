@@ -2656,17 +2656,6 @@ public:
         return res;
     }
 };
-class PreviousSelectionCommand : public Command{
-public:
-				static inline const std::string cname = "select_previous_selection";
-    static inline const std::string hname = "";
-				PreviousSelectionCommand(MainWidget* w): Command(cname, w){};
-
-				void perform(){
-								widget->select_previous_selection();
-				}
-    bool requires_document() { return true; }
-};
 
 class CommandPaletteCommand : public Command {
 public:
@@ -5758,6 +5747,7 @@ public:
     GotoSelectedTextCommand(MainWidget* w) : Command(cname, w) {};
 
     void perform() {
+        widget->select_previous_selection();
         widget->long_jump_to_destination(widget->selection_begin.y);
     }
 
@@ -7154,7 +7144,6 @@ CommandManager::CommandManager(ConfigManager* config_manager) {
     register_command<CopyScreenshotToScratchpad>();
     register_command<CopyScreenshotToClipboard>();
     register_command<AddHighlightCommand>();
-    register_command<PreviousSelectionCommand>();
     register_command<GotoTableOfContentsCommand>();
     register_command<GotoHighlightCommand>();
     register_command<IncreaseFreetextBookmarkFontSizeCommand>();
