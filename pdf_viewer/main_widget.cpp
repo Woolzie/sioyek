@@ -6140,9 +6140,12 @@ std::wstring MainWidget::handle_add_highlight(char symbol) {
 void MainWidget::select_previous_selection() {
     if(prev_selection.doc_view != main_document_view)return;
 
-    selection_begin = prev_selection.begin;
-    selection_end = prev_selection.end;
-    selection_mode = prev_selection.selection_mode;
+    bool selections_equal = (selection_begin.x == selection_end.x && selection_begin.y == selection_end.y);
+    if(selections_equal && selection_mode == SelectionMode::Character){
+        selection_begin = prev_selection.begin;
+        selection_end = prev_selection.end;
+        selection_mode = prev_selection.selection_mode;
+    }
 
     if(selection_mode != SelectionMode::Line) {
         main_document_view->get_text_selection(selection_begin,
